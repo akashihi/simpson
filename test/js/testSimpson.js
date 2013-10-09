@@ -24,4 +24,18 @@ define(function(require) {
         QUnit.equal(Simpson.reEven(1), 2);
         QUnit.equal(Simpson.reEven(2), 2);
     });
+
+    QUnit.test("xStepper calculates correctly.", function() {
+        var stepper = Simpson.xStepper(2,1,10);
+        QUnit.equal(stepper(0), 1);
+        QUnit.equal(stepper(5), 1.5);
+        QUnit.equal(stepper(10), 2);
+    });
+
+    QUnit.test("Summation valid.", function() {
+        math = require("mathjs");
+        var f = math.eval("function f(x) =x");
+        var N = 10;
+        QUnit.close(Simpson.summarize(f,1,N, Simpson.xStepper(1,0,N)), 5.5,0.001);
+    })
 });

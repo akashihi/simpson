@@ -29,10 +29,10 @@ define(["mathjs"], function(math) {
        },
        /**
         * Calculates function value for supplied argument.
-        * @param {Parser} f parsed f(x) function to evaluate
+        * @param {Function} f parsed f(x) function to evaluate
         * @param {number} value function argument. It is always supplied as
         * 'x' to the expression
-        * @return {number} function evaluation result.
+        * @return {Parser} function evaluation result.
         */
        evaluateExpression: function(f, value) {
            return f(value);
@@ -49,6 +49,36 @@ define(["mathjs"], function(math) {
            }
 
            return N;
+       },
+       /**
+        * Generates function for iterative stepped value calculation in [a;b] range.
+        * @param b Upper domain value.
+        * @param a Lower domain value.
+        * @param N Steps
+        * @return {Function} f(n) generating stepped values.
+        */
+       xStepper: function(b, a, N) {
+           var h = this.stepLength(b, a, N);
+           return function(n) {
+                return a+h*n;
+           }
+       },
+       /**
+        * Calculates iterative sum of f(x) function, from i to j with step 1,
+        * and x is evaluated a v(n), where n is index of summation.
+        * @param {Function} f parsed f(x) function to evaluate.
+        * @param {number} i lower bound of summation.
+        * @param {number} j upper bound of summation.
+        * @param {function} v function, converting summation index to f(x) argument.
+        * @return {number} Summation result.
+        */
+       summarize: function(f, i, j, v) {
+           var result = 0;
+            for(n=i; n<j+1; n++) {
+                result+=f(v(n));
+            }
+
+           return result;
        }
    }
 });
