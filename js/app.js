@@ -1,5 +1,7 @@
 define([
 "jquery",
-"bootstrap"
+"bootstrap",
+"underscore",
+"backbone"
 ], function() {
 });
