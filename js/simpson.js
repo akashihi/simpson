@@ -16,9 +16,10 @@ define(["mathjs"], function(math) {
        integrate: function(expression, b,a, N) {
            var f = math.eval("function f(x)="+expression);
 
-           var result = f(a)+f(b)+4*this.summarize(f,1,N,this.halfStepper(b,a,N))+this.summarize(f,1,N-1,this.xStepper(b,a,N))
+           var result = f(a)+f(b)+4*this.summarize(f,1,N,this.halfStepper(b,a,N))+2*this.summarize(f,1,N-1,this.xStepper(b,a,N))
+           result=result*this.stepLength(b,a,N)/6;
 
-            return 0.5
+            return result;
        },
        /**
         * Calculates step length of a

@@ -4,7 +4,7 @@ define(function(require) {
     QUnit.module("Simpson's rule");
 
     QUnit.test("integrates correctly", function() {
-        QUnit.equal(Simpson.integrate("x^2",1,0,10), 0.5);
+        QUnit.close(Simpson.integrate("x",1,0,10), 0.5, 0.001);
     });
 
     QUnit.test("Step length calculated correctly", function() {
@@ -45,4 +45,5 @@ define(function(require) {
         QUnit.equal(stepper(5), 1.45);
         QUnit.equal(stepper(10), 1.95);
     });
+
 });
