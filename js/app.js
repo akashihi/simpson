@@ -1,0 +1,5 @@
+define([
+"jquery",
+"bootstrap"
+], function() {
+});
