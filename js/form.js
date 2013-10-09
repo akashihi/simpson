@@ -1,4 +1,4 @@
-define(["math", "simpson"],function (math, simpson) {
+define(["jsrender", "math", "simpson"],function (renderer, math, simpson) {
     return {
         validateFunction: function(selector) {
             var expression = selector.val();
@@ -36,9 +36,12 @@ define(["math", "simpson"],function (math, simpson) {
         },
         integrate: function() {
           var value = simpson.integrate($('#inputFunction').val(),$('#inputB').val(),$('#inputA').val(),$('#inputStep').val());
+            $('#resultLounge').children().append(this.template.render({value:value}));
           return false;
         },
         init: function () {
+            this.template = $.templates('#resultTemplate');
+
             $('#inputFunction').change($.proxy(this.onChange,this));
             $('#inputA').change($.proxy(this.onChange,this));
             $('#inputB').change($.proxy(this.onChange,this));
@@ -46,7 +49,7 @@ define(["math", "simpson"],function (math, simpson) {
             $('#inputDeviation').change($.proxy(this.onChange,this));
             this.onChange();
 
-            $('#integrate').click(this.integrate);
+            $('#integrate').click($.proxy(this.integrate, this));
         }
     }
 });
