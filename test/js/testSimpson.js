@@ -3,7 +3,7 @@ define(function(require) {
 
     QUnit.module("Simpson's rule");
 
-    QUnit.test("integrates correctly", function() {
+    QUnit.test("Integrates correctly", function() {
         QUnit.close(Simpson.integrate("x",1,0,10), 0.5, 0.001);
     });
 
