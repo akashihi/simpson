@@ -43,35 +43,44 @@
   </div>
 </nav>
 
-<div class="container">
-    <div class="row span2"></div>
-    <div class="row span8">
-        <form>
-            <legend>Интеграл</legend>
-            <label class="control-label" for="inputFunction">Подынтегральная функция</label>
-            <input id="inputFunction" class="input-xxlarge" type="text" placeholder="x^2"/>
-            <span class="help-block">Выражение зависящее от x</span>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-3">
+            Вычисление определённого интеграла по методу Симпсона:
+            <img src="images/formulae.png" width="260" height="54" alt="Квадратурная формула Симпсона">
 
-            <label class="control-label">Пределы интегрирования:&nbsp;</label>
-            <label class="control-label" for="inputA">нижний</label><input id="inputA" class="input-small" type="text" placeholder="0">
-            <label class="control-label" for="inputB">верхний</label><input id="inputB" class="input-small" type="text" placeholder="1">
+            Чётность числа разбиений автоматически корректируется в сторону увеличения.
 
-            <label class="control-label" for="inputStep">Количество разбиений:&nbsp;</label>
-            <input id="inputStep" class="input-small" type="text" placeholder="10">
-            <span class="help-block">Точность и длительность вычислений возврастает с числом шагов</span>
+            Погрешность вычисляется с использованием правила Рунге:
 
-            <label class="checkbox">
-              <input id="inputDeviation" type="checkbox" value="">
-              Оценивать погрешность?
-            </label>
-            <span class="help-block">Расчёт погрешности замедляет вычисление интеграла.</span>
-        </form>
+            <img src="images/runge.png" width="260" height="46" alt="Правило Рунге">
+
+        </div>
+        <div class="col-md-6">
+            <form>
+                <legend>Интеграл</legend>
+                <label class="control-label" for="inputFunction">Подынтегральная функция</label>
+                <input id="inputFunction" class="input-sg" type="text" placeholder="x^2"/>
+                <span class="help-block">Выражение зависящее от x</span>
+
+                <label class="control-label">Пределы интегрирования:&nbsp;</label>
+                <label class="control-label" for="inputA">нижний</label><input id="inputA" class="input-sm" type="text" placeholder="0">
+                <label class="control-label" for="inputB">верхний</label><input id="inputB" class="input-sm" type="text" placeholder="1">
+
+                <label class="control-label" for="inputStep">Количество разбиений:&nbsp;</label>
+                <input id="inputStep" class="input-sm" type="text" placeholder="10">
+                <span class="help-block">Точность и длительность вычислений возврастает с числом шагов</span>
+
+                <label class="checkbox">
+                  <input id="inputDeviation" type="checkbox" value="">
+                  Оценивать погрешность?
+                </label>
+                <span class="help-block">Расчёт погрешности замедляет вычисление интеграла.</span>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
     </div>
-    <div class="row span2"></div>
 </div>
-
-
-
 
 
 
