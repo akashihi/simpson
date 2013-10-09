@@ -1,7 +1,7 @@
 define([
 "jquery",
 "bootstrap",
-"underscore",
-"backbone"
-], function() {
+"form"
+], function($,b, form) {
+    form.init();
 });
