@@ -35,7 +35,11 @@ define(["jsrender", "math", "simpson"],function (renderer, math, simpson) {
             this.validateNumber($('#inputStep'));
         },
         integrate: function() {
-          var value = simpson.integrate($('#inputFunction').val(),$('#inputB').val(),$('#inputA').val(),$('#inputStep').val());
+          var value = simpson.integrate(
+                  $('#inputFunction').val(),
+                  parseInt($('#inputB').val()),
+                  parseInt($('#inputA').val()),
+                  parseInt($('#inputStep').val()));
             $('#resultLounge').children().append(this.template.render({value:value}));
           return false;
         },

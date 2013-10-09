@@ -102,8 +102,13 @@
                         <span class="help-block">Расчёт погрешности замедляет вычисление интеграла.</span>
                     </div>
                 </div>
-                <button type="submit" id="integrate"  class="pull-right btn btn-default">Вычислить</button>
+                <div class="form-group">
+                    <button type="submit" id="integrate"  class="pull-right btn btn-default">Вычислить</button>
+                </div>
             </form>
+            <div id="resultLounge">
+                <div></div>
+            </div>
         </div>
         <div class="col-md-3">
             <h3>В подынтегральной функции поддерживаются:</h3>
@@ -169,5 +174,14 @@
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
   </script-->
+
+<script type="text/template" id="resultTemplate">
+    <div class="alert alert-dismissable alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      Значение интеграла: <strong>{{:value}}</strong><br/>
+      Погрешность вычисления: <strong>{{:value}}</strong>
+    </div>
+</script>
+
 </body>
 </html>
