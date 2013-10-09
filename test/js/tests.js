@@ -5,7 +5,9 @@
         baseUrl : "../js/"
     });
 
-    var testModules = [ ];
+    require(["require-config"]);
 
-    //require(testModules, QUnit.start);
+    var testModules = [ "js/testSimpson.js" ];
+
+    require(testModules, QUnit.start);
 }());
