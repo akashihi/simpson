@@ -35,12 +35,24 @@ define(["jsrender", "math", "simpson"],function (renderer, math, simpson) {
             this.validateNumber($('#inputStep'));
         },
         integrate: function() {
+            var expression = $('#inputFunction').val();
+            var a = parseInt($('#inputA').val());
+            var b = parseInt($('#inputB').val());
+            var N = parseInt($('#inputStep').val());
           var value = simpson.integrate(
-                  $('#inputFunction').val(),
-                  parseInt($('#inputB').val()),
-                  parseInt($('#inputA').val()),
-                  parseInt($('#inputStep').val()));
-            $('#resultLounge').children().append(this.template.render({value:value}));
+                  expression,
+                  b,
+                  a,
+                  N);
+            var inaccuracy = false;
+          if ($('#inputDeviation').is(':checked')) {
+              inaccuracy = math.abs(simpson.inaccuracy(expression,
+                                  b,
+                                  a,
+                                  N));
+
+          }
+            $('#resultLounge').children().append(this.template.render({value:value, inaccuracy: inaccuracy}));
           return false;
         },
         init: function () {

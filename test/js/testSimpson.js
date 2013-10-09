@@ -3,6 +3,10 @@ define(function(require) {
 
     QUnit.module("Simpson's rule");
 
+    QUnit.test("Inaccuracy works", function() {
+        QUnit.close(Simpson.inaccuracy("sin(e^(-x^2))",3,0,2), 0.0003, 0.000001);
+    });
+
     QUnit.test("Integrates correctly", function() {
         QUnit.close(Simpson.integrate("x",1,0,10), 0.5, 0.001);
     });
