@@ -12,7 +12,7 @@ define(function(require) {
     });
 
     QUnit.test("Function evaluation works", function() {
-        math = require("mathjs");
+        math = require("math");
         var f = math.eval("function f(x) =x^2");
 
         QUnit.equal(Simpson.evaluateExpression(f, 0), 0);
@@ -33,7 +33,7 @@ define(function(require) {
     });
 
     QUnit.test("Summation valid.", function() {
-        math = require("mathjs");
+        math = require("math");
         var f = math.eval("function f(x) =x");
         var N = 10;
         QUnit.close(Simpson.summarize(f,1,N, Simpson.xStepper(1,0,N)), 5.5,0.001);

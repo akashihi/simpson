@@ -1,4 +1,4 @@
-define(["mathjs"], function(math) {
+define(["math"], function(math) {
     /**
      * Implements Simpson's rule numerical integration algorithm,
      */
