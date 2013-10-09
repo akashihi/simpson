@@ -54,6 +54,7 @@ define(["jsrender", "math", "simpson"],function (renderer, math, simpson) {
           }
             var result = {
                 value:value,
+                showInaccuracy: $('#inputDeviation').is(':checked'),
                 inaccuracy: inaccuracy,
                 expression : expression,
                 a:a,
