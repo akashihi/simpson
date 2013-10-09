@@ -38,4 +38,11 @@ define(function(require) {
         var N = 10;
         QUnit.close(Simpson.summarize(f,1,N, Simpson.xStepper(1,0,N)), 5.5,0.001);
     })
+
+    QUnit.test("halfStepper calculates correctly.", function() {
+        var stepper = Simpson.halfStepper(2,1,10);
+        QUnit.equal(stepper(1), 1.05);
+        QUnit.equal(stepper(5), 1.45);
+        QUnit.equal(stepper(10), 1.95);
+    });
 });

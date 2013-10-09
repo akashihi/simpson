@@ -15,6 +15,9 @@ define(["mathjs"], function(math) {
         */
        integrate: function(expression, b,a, N) {
            var f = math.eval("function f(x)="+expression);
+
+           var result = f(a)+f(b)+4*this.summarize(f,1,N,this.halfStepper(b,a,N))+this.summarize(f,1,N-1,this.xStepper(b,a,N))
+
             return 0.5
        },
        /**
@@ -61,6 +64,19 @@ define(["mathjs"], function(math) {
            var h = this.stepLength(b, a, N);
            return function(n) {
                 return a+h*n;
+           }
+       },
+       /**
+        * Generates function for iterative stepped average value calculation in [a;b] range.
+        * @param b Upper domain value.
+        * @param a Lower domain value.
+        * @param N Steps
+        * @return {Function} f(n) generating stepped values.
+        */
+       halfStepper: function(b, a, N) {
+         var stepper = this.xStepper(b, a, N);
+           return function(n) {
+               return (stepper(n-1)+stepper(n))/2;
            }
        },
        /**
