@@ -52,7 +52,15 @@ define(["jsrender", "math", "simpson"],function (renderer, math, simpson) {
                                   N));
 
           }
-            $('#resultLounge').children().append(this.template.render({value:value, inaccuracy: inaccuracy}));
+            var result = {
+                value:value,
+                inaccuracy: inaccuracy,
+                expression : expression,
+                a:a,
+                b:b,
+                steps: N
+            };
+            $('#resultLounge').children().append(this.template.render(result));
           return false;
         },
         init: function () {
