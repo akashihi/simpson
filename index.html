@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label class="col-lg-5 control-label" for="inputFunction">Подынтегральная функция</label>
                     <div class="col-lg-7">
-                        <input id="inputFunction" class="col-lg-4 form-control input-sg" type="text" placeholder="x^2"/>
+                        <input id="inputFunction" class="col-lg-4 form-control input-sg" type="text" autofocus="true" placeholder="x^2"/>
                     </div>
                 </div>
                 <span class="pull-right help-block">Выражение зависящее от x</span>
@@ -102,8 +102,13 @@
                         <span class="help-block">Расчёт погрешности замедляет вычисление интеграла.</span>
                     </div>
                 </div>
-                <button type="submit" class="pull-right btn btn-default">Вычислить</button>
+                <div class="form-group">
+                    <button type="submit" id="integrate"  class="pull-right btn btn-default">Вычислить</button>
+                </div>
             </form>
+            <div id="resultLounge">
+                <div></div>
+            </div>
         </div>
         <div class="col-md-3">
             <h3>В подынтегральной функции поддерживаются:</h3>
@@ -138,7 +143,7 @@
             </ul>
             <h4>константы</h4>
             <ul>
-                <li>e основание натурального логарфма</li>
+                <li>e основание натурального логарифма</li>
                 <li>i мнимая единица</li>
                 <li>pi число &pi;</li>
             </ul>
@@ -158,7 +163,7 @@
   <div id="push"></div></div> <!-- sf-wrapper -->
   <footer class="container" id="footer">
     <a href="http://getkickstrap.com"><img src="Kickstrap/img/badge.png" /></a><br/>
-      &copy; Denis V Chapligin, 2013. Available under terms of <a href="https://gnu.org/licenses/gpl.html">GNU General Public License</a>. Source code available at <a href="https://github.com/akashihi/simpson-js-example">GitHub</a>.
+      &copy; Denis V Chapligin, 2013. Распространяется под лицензией <a href="https://gnu.org/licenses/gpl.html">GNU General Public License</a>. Исходный код на <a href="https://github.com/akashihi/simpson-js-example">GitHub</a>.
   </footer>
   <script src="js/require.js" data-main="js/app.js"></script>
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
@@ -169,5 +174,19 @@
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
   </script-->
+
+<script type="text/template" id="resultTemplate">
+    <div class="alert alert-dismissable alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      &int; {{:expression}} dx от {{:a}} до {{:b}}, количество шагов: {{:steps}}
+        <br/>
+      Значение интеграла: <strong>{{:value}}</strong>
+      {{if showInaccuracy}}
+      <br/>
+      Погрешность вычисления: <strong>{{:inaccuracy}}</strong>
+      {{/if}}
+    </div>
+</script>
+
 </body>
 </html>

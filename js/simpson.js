@@ -4,6 +4,20 @@ define(["math"], function(math) {
      */
    return {
        /**
+        * Calculates inaccuracy of numerical integral calculation.
+        * @param {string} expression function to integrate. Must be a valid Math.js expression.
+        * @param {number} b Upper domain value.
+        * @param {number} a Lower domain value.
+        * @param {number} N Integration steps.
+        * @return {number} estimated inacuracy.
+        */
+       inaccuracy: function(expression,b,a,N) {
+           var normalIntegral = this.integrate(expression, b, a, N);
+           var doubleIntegral = this.integrate(expression, b, a, N*2);
+
+           return (doubleIntegral - normalIntegral)/15;
+       },
+       /**
         * Integrates expression from b to a with N steps using Simpson's rule.
         *
         * @param {string} expression function to integrate. Must be a valid Math.js expression.

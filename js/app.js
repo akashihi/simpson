@@ -1,5 +1,7 @@
 define([
 "jquery",
-"bootstrap"
-], function() {
+"bootstrap",
+"form"
+], function($,b, form) {
+    form.init();
 });
