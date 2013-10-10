@@ -9,6 +9,8 @@ a library in your project.
 js/simpson.js
 -------------
 
+*** Requires math.js module (http://www.mathjs.org) ***
+
 A javascript module, that implements Simpson's rule. There are two public functions:
 
 * integrate: function(expression, b, a, N)
