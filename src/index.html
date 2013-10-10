@@ -1,0 +1,192 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-gb"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en-gb"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en-gb"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en-gb" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Метод Симпсона</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <!-- You can also compile style.less to use regular css. Your apps will still work. -->
+  <style type="text/css">.hidden{margin:20px;border:5px solid #a24c4c;background-color:red;padding:10px;width:400px;color:white;font-family:helvetica,sans-serif}</style>
+  <link rel="stylesheet" type="text/css" href="css/kickstrap.css">
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div id="sf-wrapper"> <!-- Sticky Footer Wrapper -->
+  <!-- Prompt IE 6/7 users to install Chrome Frame. Remove this if you support IE 7-.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+<!--! END KICKSTRAP HEADER -->
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand">Вычисление определённого интеграла по методу Симпсона</a>
+  </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-3">
+            Вычисление определённого интеграла по методу Симпсона:
+            <img src="images/formulae.png" width="260" height="54" alt="Квадратурная формула Симпсона">
+
+            Чётность числа разбиений автоматически корректируется в сторону увеличения.
+
+            Погрешность вычисляется с использованием правила Рунге:
+
+            <img src="images/runge.png" width="260" height="46" alt="Правило Рунге">
+
+        </div>
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <legend>Интеграл</legend>
+                <div class="form-group">
+                    <label class="col-lg-5 control-label" for="inputFunction">Подынтегральная функция</label>
+                    <div class="col-lg-7">
+                        <input id="inputFunction" class="col-lg-4 form-control input-sg" type="text" autofocus="true" placeholder="x^2"/>
+                    </div>
+                </div>
+                <span class="pull-right help-block">Выражение зависящее от x</span>
+
+                <div class="form-group">
+                    <label class="control-label">Пределы интегрирования:&nbsp;</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="inputA">нижний</label>
+                    <div class="col-lg-2">
+                        <input id="inputA" class="form-control input-sm" type="text" placeholder="0">
+                    </div>
+                    <label class="col-lg-4 control-label" for="inputB">верхний</label>
+                    <div class="col-lg-2">
+                        <input id="inputB" class="col-lg-1 form-control input-sm" type="text" placeholder="1">
+                    </div>
+                    <div class="col-lg-1"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" for="inputStep">Количество разбиений:&nbsp;</label>
+                    <div class="col-lg-2">
+                        <input id="inputStep" class="col-lg-4 form-control input-sm" type="text" placeholder="10">
+                    </div>
+                    <div class="col-lg-6">
+                        <span class="help-block">Точность и длительность вычислений возврастает с числом разбиений</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-6 checkbox">
+                      <input id="inputDeviation" type="checkbox" value="">
+                      Оценивать погрешность?
+                    </label>
+                    <div class="col-lg-6">
+                        <span class="help-block">Расчёт погрешности замедляет вычисление интеграла.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="integrate"  class="pull-right btn btn-default">Вычислить</button>
+                </div>
+            </form>
+            <div id="resultLounge">
+                <div></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3>В подынтегральной функции поддерживаются:</h3>
+            <h4>операторы</h4>
+            <ul>
+                <li>x + x сложение</li>
+                <li>x - x вычитание</li>
+                <li>x * x умножение</li>
+                <li>x / x деление</li>
+                <li>x % x взятие остатка</li>
+                <li>x ^ x возведение в степень</li>
+                <li>x! факториал</li>
+            </ul>
+            <h4>функции</h4>
+            <ul>
+                <li>abs(x) взятие модуля</li>
+                <li>ceil(x) округление</li>
+                <li>cube(x) возведение в куб</li>
+                <li>log(x) логарифи</li>
+                <li>log10(x) логарифм по основанию 10</li>
+                <li>sqrt(x) взятие квадратного корня</li>
+                <li>square(x) возведение в квадрат</li>
+                <li>acos(x) арккосинус</li>
+                <li>asin(x) арксинус</li>
+                <li>atan(x) арктангенс</li>
+                <li>cos(x) косинус</li>
+                <li>cot(x) котангенс</li>
+                <li>csc(x) косеканс</li>
+                <li>sec(x) секанс</li>
+                <li>sin(x) синус</li>
+                <li>tan(x) тангенс</li>
+            </ul>
+            <h4>константы</h4>
+            <ul>
+                <li>e основание натурального логарифма</li>
+                <li>i мнимая единица</li>
+                <li>pi число &pi;</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+  <!--! KICKSTRAP FOOTER -->
+   <div class="hidden"><h1>No Stylesheet Loaded</h1><p><strong>Could not load Kickstrap.</strong>There are <a href="http://getkickstrap.com/docs/1.2/troubleshooting/#lessjs-errors">several common reasons for this error.</a></p></div>
+  <div id="push"></div></div> <!-- sf-wrapper -->
+  <footer class="container" id="footer">
+    <a href="http://getkickstrap.com"><img src="Kickstrap/img/badge.png" /></a><br/>
+      &copy; Denis V Chapligin, 2013. Распространяется под лицензией <a href="https://gnu.org/licenses/gpl.html">GNU General Public License</a>. Исходный код на <a href="https://github.com/akashihi/simpson-js-example">GitHub</a>.
+  </footer>
+  <script src="js/require.js" data-main="js/app.js"></script>
+  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <!--script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script-->
+
+<script type="text/template" id="resultTemplate">
+    <div class="alert alert-dismissable alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      &int; {{:expression}} dx от {{:a}} до {{:b}}, количество шагов: {{:steps}}
+        <br/>
+      Значение интеграла: <strong>{{:value}}</strong>
+      {{if showInaccuracy}}
+      <br/>
+      Погрешность вычисления: <strong>{{:inaccuracy}}</strong>
+      {{/if}}
+    </div>
+</script>
+
+</body>
+</html>
