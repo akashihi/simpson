@@ -2,7 +2,7 @@
     QUnit.config.autostart = false;
 
     require.config({
-        baseUrl : "../js/"
+        baseUrl : "../src/js/"
     });
 
     var testModules = [ "js/testSimpson.js" ];
