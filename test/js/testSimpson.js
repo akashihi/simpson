@@ -11,7 +11,7 @@ define(function(require) {
     QUnit.module("Simpson's rule");
 
     QUnit.test("Inaccuracy works", function() {
-        QUnit.close(Simpson.inaccuracy("sin(e^(-x^2))",3,0,4), 0.0003, 0.0001);
+        QUnit.close(Simpson.inaccuracy("sin(e^(-x^2))",3,0,4).inaccuracy, 0.0003, 0.0001);
     });
 
     QUnit.test("Integrates correctly", function() {
