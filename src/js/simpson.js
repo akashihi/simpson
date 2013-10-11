@@ -20,9 +20,13 @@ define(["math"], function(math) {
         */
        inaccuracy: function(expression,b,a,N) {
            var normalIntegral = this.integrate(expression, b, a, N);
-           var doubleIntegral = this.integrate(expression, b, a, N*2);
+           N=this.reEven(N);
+           var halfIntegral = this.integrate(expression, b, a, N/2);
 
-           return (doubleIntegral - normalIntegral)/15;
+           return {
+                    value: normalIntegral,
+                    inaccuracy: math.abs((normalIntegral - halfIntegral)/15)
+           };
        },
        /**
         * Integrates expression from b to a with N steps using Simpson's rule.
@@ -36,8 +40,6 @@ define(["math"], function(math) {
         */
        integrate: function(expression, b,a, N) {
            var f = math.eval("function f(x)="+expression);
-
-           N=this.reEven(N);
 
            var result = f(a)+f(b)+4*this.summarize(f,1,N,this.halfStepper(b,a,N))+2*this.summarize(f,1,N-1,this.xStepper(b,a,N))
            result=result*this.stepLength(b,a,N)/6;
