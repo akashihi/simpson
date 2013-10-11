@@ -26,8 +26,7 @@ results will be more precise.
 
 integrate function calculates value of a definite integral expression(x) dx in a reange [a;b].
 
-inaccuracy function estimates integral's value inaccuracy using Runge rule. Please note, that this function
-recalculates value of the integral two time with different number of steps.
+inaccuracy function estimates integral's value inaccuracy using Runge rule.
 
 
  (C) Denis V Chapligin, 2013. Released under terms of GPLv3.
