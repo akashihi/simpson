@@ -46,19 +46,22 @@ define(["jsrender", "math", "simpson"],function (renderer, math, simpson) {
             var a = parseInt($('#inputA').val());
             var b = parseInt($('#inputB').val());
             var N = parseInt($('#inputStep').val());
-          var value = simpson.integrate(
-                  expression,
-                  b,
-                  a,
-                  N);
-            var inaccuracy = false;
-          if ($('#inputDeviation').is(':checked')) {
-              inaccuracy = math.abs(simpson.inaccuracy(expression,
-                                  b,
-                                  a,
-                                  N));
-
-          }
+            var inaccuracy = NaN;
+            var value = NaN
+           if ($('#inputDeviation').is(':checked')) {
+               var r = simpson.inaccuracy(expression,
+                                   b,
+                                   a,
+                                   N);
+               value = r.value;
+               inaccuracy = r.inaccuracy;
+           } else {
+               value = simpson.integrate(
+                   expression,
+                   b,
+                   a,
+                   N);
+           }
             var result = {
                 value:value,
                 showInaccuracy: $('#inputDeviation').is(':checked'),
