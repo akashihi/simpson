@@ -20,9 +20,9 @@ define(["math"], function(math) {
         */
        inaccuracy: function(expression,b,a,N) {
            var normalIntegral = this.integrate(expression, b, a, N);
-           var doubleIntegral = this.integrate(expression, b, a, N*2);
+           var halfIntegral = this.integrate(expression, b, a, N/2);
 
-           return (doubleIntegral - normalIntegral)/15;
+           return math.abs((normalIntegral - halfIntegral)/15);
        },
        /**
         * Integrates expression from b to a with N steps using Simpson's rule.
